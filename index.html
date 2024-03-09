@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영원한 당신의 버킷리스트</title>
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body class="bg-t5 center">
+    <h1 class="title-t5">SPARTHON Bucket List</h1>
+    <p class="msg">꿈은 꾸는 것이 아니라, 이루는 것이다!</p>
+    <div class="flex-row wrap">
+        <div class="bkt img1-t5 center">고양이 키우기</div>
+        <div class="bkt img2-t5 center">해외 여행 가기</div>
+        <div class="bkt img3-t5 center">몸 만들어보기<br>꾸준히 운동하기</div>
+        <div class="bkt img4-t5 center">만족스러운 곳에 취업하기</div>
+        <div class="bkt img5-t5 center">여자친구 만들기</div>
+        <div class="bkt img6-t5 center">금연하기</div>
+    </div>
+    <script>
+        // 페이지 로드 시 이전 상태 복원
+        document.addEventListener("DOMContentLoaded", (event) => {
+            const bkts = document.querySelectorAll(".bkt");
+            bkts.forEach((bkt, index) => {
+                // 로컬 스토리지에서 상태 읽기
+                const isDone = localStorage.getItem("bkt" + index) === "done";
+                if (isDone) {
+                    bkt.classList.add("done");
+                }
+            });
+        });
+
+        // 버킷 리스트 클릭 이벤트
+        const bkts = document.querySelectorAll(".bkt");
+        bkts.forEach((bkt, index) => {
+            bkt.addEventListener("click", function () {
+                // 클래스 토글
+                bkt.classList.toggle("done");
+
+                // 로컬 스토리지에 상태 저장
+                if (bkt.classList.contains("done")) {
+                    localStorage.setItem("bkt" + index, "done");
+                } else {
+                    localStorage.setItem("bkt" + index, "");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
